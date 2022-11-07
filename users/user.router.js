@@ -14,7 +14,7 @@ app.post("/signup", async (req, res) => {
     if (user) {
       res.status(404).send({ msg: "User already exists , please login" });
     } else {
-      dns.lookup('example.org', (err, address, family) => {
+     
         bcrypt.hash(password, 5, async function (err, hash) {
           if (err) {
             res
@@ -24,14 +24,14 @@ app.post("/signup", async (req, res) => {
           const new_user = new UserModel({
             email,
             password: hash,
-            ip:address
+   
          
           });
   
           await new_user.save();
           res.send({ msg: "User Signup Successfully" });
         });
-      });
+    
    
     }
   } catch (err) {
